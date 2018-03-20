@@ -13,12 +13,16 @@ class ViewController: UIViewController {
     var counter = 0.0
     var timer = Timer()
     var isPlaying = false
+    var timeLabel : UILabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let timeLabel = UILabel(frame:CGRect(x:self.view.left, y:self.view.top + 20,
-                                         width:self.view.width, height:(self.view.height - 20)/2.0))
+//        let timeLabel = UILabel(frame: CGRect(x:self.view.left, y:self.view.top + 20,
+//                                              width:self.view.width, height:(self.view.height - 20)/2.0))
+        
+        timeLabel.frame = CGRect(x:self.view.left, y:self.view.top + 20,
+                                 width:self.view.width, height:(self.view.height - 20)/2.0)
         timeLabel.textColor = UIColor.black
         timeLabel.text = String(counter)
         timeLabel.textAlignment = .center
@@ -89,9 +93,9 @@ class ViewController: UIViewController {
     }
     
     func updateLabel(newValue : Double) {
-        if let timeLabel = view.viewWithTag(1001) as? UILabel { //如果1001是UIlabel类那么do sth. timeLabel不是UIlabel那么为nil
+//        if let timeLabel = view.viewWithTag(1001) as? UILabel { //如果1001是UIlabel类那么do sth. timeLabel不是UIlabel那么为nil
             timeLabel.text = String(format: "%.1f", newValue)
-        }
+//        }
     }
 }
 
