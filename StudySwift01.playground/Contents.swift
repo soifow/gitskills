@@ -197,3 +197,9 @@ func foundIndex(for element:Int, in collection:[Int]) -> Int? {
 
 foundIndex(for: 3, in: [1,2,3,2,4])
 
+
+
+
+
+
+
