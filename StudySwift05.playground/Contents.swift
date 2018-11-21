@@ -166,7 +166,159 @@ upCaseErrorDescription
 //let yetAnotherErrorCodeString = errorCodeString
 
 //var bucketList: Array<String>
-var bucketList: [String] = ["Climb Mt. Everest"]
+//var bucketList: [String] = ["Climb Mt. Everest"]
+//var newItems = [
+//                "Fly hot air balloon to Fiji",
+//                "Watch the Lord of the Rigs trilogy in one day",
+//                "Go on a walkabout",
+//                "Scuba dive in the Great Blue Hole",
+//                "Find a triple rainbow"
+//                ]
+//for item in newItems {
+//    bucketList.append(item)
+//}
+//bucketList += newItems
+//bucketList
+//bucketList.remove(at: 2)
+//bucketList[0...2]
+//bucketList[2] += " in Australia"
+//bucketList[0] = "Climb Mt. Kilimanjaro"
+//bucketList.insert("Toboggan across Alaska", at: 2)
+//bucketList
+
+//创建字典的几种格式
+//var dict1: Dictionary<String, Double> = [:]
+//var dict2 = Dictionary<String, Double>()
+//var dict3: [String:Double] = [:]
+//var dict4 = [String:Double]()
+
+//var movieRatings = ["Donnie Darko":4, "Chungking Express":5, "Dark City":4]
+//print("I have rated \(movieRatings.count) movies.")
+//
+//let darkoRating = movieRatings["Donnie Darko"]
+//movieRatings["Dark City"] = 5
+//movieRatings
+//let oldRating: Int? = movieRatings.updateValue(5, forKey: "Donnie Darko")
+//if let lastRating = oldRating, let currentRating = movieRatings["Donnie Darko"] {
+//    print("Old rating: \(lastRating); current rating: \(currentRating)")
+//}
+//movieRatings["The Cabinet of Dr. Caligari"] = 5
+////movieRatings.removeValue(forKey: "Dark City")
+//movieRatings["Dark City"] = nil
+//for (key, value) in movieRatings {
+//    print("The movie \(key) was rated \(value).")
+//}
+//
+//for movie in movieRatings.keys {
+//    print("User has rated \(movie).")
+//}
+//
+//let watchedMovies = Array(movieRatings.keys)
+//
+//let zipCodeDice = [
+//                   "Beijing":[100192, 100193, 100194, 100195, 100196],
+//                   "Shanghai":[200111, 200112, 200113, 200114, 200115],
+//                   "Guangzhou":[310801, 310802, 310803, 310804, 310805]
+//                   ]
+//var zipCodeArr : [Int] = Array()
+//for zipCode in zipCodeDice.values {
+//    zipCodeArr += zipCode
+//}
+//print("Georgia has the following zip codes:\(zipCodeArr)")
+
+//var groceryBag = Set<String>()
+//groceryBag.insert("Apples")
+//groceryBag.insert("Oranges")
+//groceryBag.insert("Pineapple")
+//var groceryBag = Set(["Apples", "Oranges", "Pineapple"])
+//var groceryBag: Set = ["Apples", "Oranges", "Pineapple"]
+//for food in groceryBag {
+//    print(food)
+//}
+//
+//let hasBananas = groceryBag.contains("Bananas")
+//let friendsGroceryBag = Set(["Bananas", "Cereal", "Milk", "Oranges"])
+//let commonGroceryBag = groceryBag.union(friendsGroceryBag)
+//
+//let roommatesGroceryBag = Set(["Apples", "Bananas", "Cereal", "Toothpaste"])
+//let itemsToReturn = commonGroceryBag.intersection(roommatesGroceryBag)
 
 
+func printGreeting() {
+    print("Hello, playground.")
+}
+printGreeting()
+
+//形参
+//func printPersonalGreeting(name: String) {
+//外部参数to 内部参数name(增加可读性)
+func printPersonalGreeting(to name: String) {
+    print("Hello \(name), welcome to your playground.")
+}
+//printPersonalGreeting(name: "HaiLang")
+printPersonalGreeting(to: "Matt")
+
+//可变参数(只能有一个可变参数且通常为参数表最后一个，参数类型后加... 函数内部把该参数视为数组)
+func printPersonalGreetings(to names: String...) {
+    for name in names {
+        print("Hello \(name), welcome to your playground.")
+    }
+}
+printPersonalGreetings(to: "Alex", "Chris", "Drew", "Pat")
+
+//func divisionDescriptionFor(numerator: Double, denominator: Double) {
+//    print("\(numerator) divided by \(denominator) equals \(numerator / denominator)")
+//}
+//divisonDescriptionFor(numerator: 9.0, denominator: 3.0)
+
+//func divisionDescriptionFor(numerator: Double, denominator: Double, withPunctuation punctuation: String = ".") {
+//    print("\(numerator) divided by \(denominator) equals \(numerator / denominator)\(punctuation)")
+//}
+//divisionDescriptionFor(numerator: 9.0, denominator: 3.0)
+//divisionDescriptionFor(numerator: 9.0, denominator: 3.0, withPunctuation: "!")
+
+func divisionDescriptionFor(numerator: Double, denominator: Double, withPunctuation punctuation: String = ".") -> String {
+    return "\(numerator) divided by \(denominator) equals \(numerator / denominator)\(punctuation)"
+}
+print(divisionDescriptionFor(numerator: 9.0, denominator: 3.0))
+print(divisionDescriptionFor(numerator: 9.0, denominator: 3.0, withPunctuation: "!"))
+
+var error = "The request failed:"
+func appendErrorCode(_ code: Int, toErrorString errorString: inout String) {
+    if code == 400 {
+        errorString += " bad request."
+    }
+}
+appendErrorCode(400, toErrorString: &error)
+
+func grabMiddleName(fromeFullName name: (String, String?, String)) -> String? {
+    return name.1
+}
+
+let middleName = grabMiddleName(fromeFullName: ("Matt" , nil, "Mathias"))
+if let theName = middleName {
+    print(theName)
+}
+
+func siftBeans(fromGroceryList list: [String]) -> (beans:[String], otherGroceries:[String]) {
+    var beans = [String]()
+    var others = [String]()
+    for name in list {
+        if name.hasSuffix("beans") {
+            beans.append(name)
+        } else {
+            others.append(name)
+        }
+    }
+    
+    return (beans, others)
+}
+
+let result = siftBeans(fromGroceryList: ["green beans",
+                                         "milk",
+                                         "black beans",
+                                         "pinto beans",
+                                         "apples"])
+result.beans == ["green beans", "black beans", "pinto beans"]
+result.otherGroceries == ["milk", "apples"]
 
